@@ -8,7 +8,7 @@ namespace MoodAnalyzerProblems
     {
         public enum ExpectionType
         {
-            NULL, EMPTY, 
+            NULL, EMPTY, NO_SUCH_CLASS, NO_SUCH_METHOD,
         }
         public ExpectionType type;
         public MoodAnalyzerException(ExpectionType type, string message) : base(message)
