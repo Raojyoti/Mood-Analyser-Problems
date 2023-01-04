@@ -32,7 +32,7 @@ namespace MoodAnalyzerTest
         }
         /*TC2.1 Given Null Mood Should Return Happy*/
         [Test]
-        public void GivenNullMood_WhenAnalyzer_ShouldThrowMoodAnalyzerCustomException()
+        public void GivenNullMood_WhenAnalyzer_ShouldHappyMood()
         {
             //Arrange
             string message = null;
