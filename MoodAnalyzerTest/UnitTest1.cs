@@ -30,17 +30,35 @@ namespace MoodAnalyzerTest
             //Assert
             Assert.AreEqual(actual, "Happy");
         }
-        /*TC2.1 Given Null Mood Should Return Happy*/
+        /*TC3.1 Given NULL Mood Should Throw MoodAnalysisException*/
         [Test]
-        public void GivenNullMood_WhenAnalyzer_ShouldHappyMood()
+        public void GivenNullMood_WhenAnalyzer_ShouldThrowMoodAnalyzerCustomException()
         {
-            //Arrange
-            string message = null;
-            //Act
-            MoodAnalyzer analyser = new MoodAnalyzer(message);
-            string actual = analyser.AnalyserMood();
-            //Assert
-            Assert.AreEqual(actual, "Happy");
+            try
+            {
+                string message = null;
+                MoodAnalyzer analyser = new MoodAnalyzer(message);
+                string actual = analyser.AnalyserMood();
+            }
+            catch (MoodAnalyzerException e)
+            {
+                Assert.AreEqual("Mood should not be Null", e.Message);
+            }
+        }
+        /*TC3.2 Given Empty Mood Should Throw MoodAnalysisException*/
+        [Test]
+        public void GivenEmptyMood_WhenAnalyzer_ShouldThrowMoodAnalyzerException()
+        {
+            try
+            {
+                string message = " ";
+                MoodAnalyzer analyser = new MoodAnalyzer(message);
+                string actual = analyser.AnalyserMood();
+            }
+            catch (MoodAnalyzerException e)
+            {
+                Assert.AreEqual("Mood should not be Empty", e.Message);
+            }
         }
     }
 }
