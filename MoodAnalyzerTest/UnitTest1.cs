@@ -1,6 +1,7 @@
 using Microsoft.VisualStudio.TestPlatform.CommunicationUtilities;
 using MoodAnalyzerProblems;
 using NUnit.Framework;
+using NUnit.Framework.Internal;
 
 namespace MoodAnalyzerTest
 {
@@ -135,6 +136,48 @@ namespace MoodAnalyzerTest
             catch (MoodAnalyzerException ex)
             {
                 Assert.AreEqual(excepted, ex.Message);
+            }
+        }
+        /*TC6.1 Set Happy Message with Reflector Should Return HAPPY*/
+        [Test]
+        public void SetHappyMessagewithReflectorShouldReturnHAPPY()
+        {
+            string expected = "Happy";
+            try
+            { 
+            string mood = MoodAnalyserFactory.InvokedAnalyseMood("Happy", "AnalyserMood");
+            }
+            catch (MoodAnalyzerException ex) 
+            {
+                Assert.AreEqual(expected, ex.Message);
+            }
+        }
+        /*TC6.2 Set Field When Improper Should Throw Exception with No Such Field*/
+        [Test]
+        public void SetFieldWhenImproperShouldThrowExceptionwithNoSuchField()
+        {
+            string expected = "Class Not Found";
+            try
+            {
+                string mood = MoodAnalyserFactory.InvokedAnalyseMood("Happy", "AnalyserMood");
+            }
+            catch (MoodAnalyzerException ex)
+            {
+                Assert.AreEqual(expected, ex.Message);
+            }
+        }
+        /*TC6.2 Setting Null Message with Reflector Should Throw Exception*/
+        [Test]
+        public void SetNullMessagewithReflectorShouldThrowException()
+        {
+            string expected = null;
+            try
+            {
+                string mood = MoodAnalyserFactory.InvokedAnalyseMood("Happy", "AnalyserMood");
+            }
+            catch (MoodAnalyzerException ex)
+            {
+                Assert.AreEqual(expected, ex.Message);
             }
         }
     }
